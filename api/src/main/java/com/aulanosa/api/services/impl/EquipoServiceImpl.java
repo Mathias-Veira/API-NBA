@@ -1,8 +1,10 @@
 package com.aulanosa.api.services.impl;
 
 import com.aulanosa.api.dtos.EquipoDTO;
+import com.aulanosa.api.mappers.EquipoMapper;
 import com.aulanosa.api.repositories.EquipoRepository;
 import com.aulanosa.api.services.EquipoService;
+import jakarta.annotation.PostConstruct;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -20,15 +22,16 @@ import org.json.JSONObject;
 public class EquipoServiceImpl implements EquipoService {
     @Autowired
     private EquipoRepository equipoRepository;
-    @Override
+
+
     public List<EquipoDTO> obtenerEquipos() {
         List<EquipoDTO> equipos = new ArrayList<>();
         try {
-            URL url = new URL("http://api.balldontlie.io/v1/teams");
+            URL url = new URL("https://api.balldontlie.io/v1/teams");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("Authorization","475f2ca9-26a3-4a5b-a3d8-2942adc3f3ad");
             connection.setRequestMethod("GET");
-            HttpURLConnection.setFollowRedirects(true);
+
             connection.connect();
             int code = connection.getResponseCode();
 
@@ -37,7 +40,7 @@ public class EquipoServiceImpl implements EquipoService {
                 System.out.println(connection.getResponseMessage());
             }else{
                 StringBuilder information = new StringBuilder();
-                Scanner sc = new Scanner(url.openStream());
+                Scanner sc = new Scanner(connection.getInputStream());
 
                 while (sc.hasNext()){
                     information.append(sc.nextLine());
@@ -58,15 +61,23 @@ public class EquipoServiceImpl implements EquipoService {
                     equipoDTO.setAbreviacionEquipo(jsonObject.getString("abbreviation"));
                     equipos.add(equipoDTO);
                 }
+                System.out.println("TODO BIEN");
             }
         }catch (Exception e){
             e.printStackTrace();
         }
+
         return equipos;
     }
 
-    @Override
-    public void almacenarEquipo(List<EquipoDTO> equipos) {
 
+
+    @Override
+    @PostConstruct
+    public void almacenarEquipo() {
+        List<EquipoDTO> equipos = obtenerEquipos();
+        for (EquipoDTO equipo: equipos) {
+            equipoRepository.save(EquipoMapper.convertirAModelo(equipo));
+        }
     }
 }
