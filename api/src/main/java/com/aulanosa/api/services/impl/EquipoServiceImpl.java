@@ -50,7 +50,7 @@ public class EquipoServiceImpl implements EquipoService {
 
                 JSONArray jsonArray = new JSONObject(information.toString()).getJSONArray("data");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
+                for (int i = 0; i < jsonArray.length()-15; i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     EquipoDTO equipoDTO = new EquipoDTO();
                     equipoDTO.setIdEquipo(jsonObject.getInt("id"));
@@ -59,6 +59,7 @@ public class EquipoServiceImpl implements EquipoService {
                     equipoDTO.setCiudadEquipo(jsonObject.getString("city"));
                     equipoDTO.setNombreEquipo(jsonObject.getString("name"));
                     equipoDTO.setAbreviacionEquipo(jsonObject.getString("abbreviation"));
+                    equipoDTO.setImagenEquipo("assets/img_teams/" + equipoDTO.getCiudadEquipo() + " " + equipoDTO.getNombreEquipo()+ ".png");
                     equipos.add(equipoDTO);
                 }
                 System.out.println("TODO BIEN");
