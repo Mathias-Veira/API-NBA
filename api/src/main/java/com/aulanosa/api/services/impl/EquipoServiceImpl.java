@@ -51,7 +51,7 @@ public class EquipoServiceImpl implements EquipoService {
             URL url = new URL("https://sports-information.p.rapidapi.com/nba/standings?year=2023&group=conference\"");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("X-RapidAPI-Host", "sports-information.p.rapidapi.com");
-            connection.setRequestProperty("X-RapidAPI-Key", "7e5d2b5464msh8dc08eeb4106034p1a8138jsn6b1edb3d58be");
+            connection.setRequestProperty("X-RapidAPI-Key", System.getenv("SPORTS_INFORMATION"));
             connection.setRequestMethod("GET");
 
             connection.connect();
@@ -399,7 +399,7 @@ public class EquipoServiceImpl implements EquipoService {
             URL url = new URL("https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=2023");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com");
-            connection.setRequestProperty("X-RapidAPI-Key", "7e5d2b5464msh8dc08eeb4106034p1a8138jsn6b1edb3d58be");
+            connection.setRequestProperty("X-RapidAPI-Key", System.getenv("API_NBA"));
             connection.setRequestMethod("GET");
 
             connection.connect();
@@ -450,7 +450,7 @@ public class EquipoServiceImpl implements EquipoService {
         try {
             URL url = new URL("https://api.balldontlie.io/v1/teams");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Authorization", "475f2ca9-26a3-4a5b-a3d8-2942adc3f3ad");
+            connection.setRequestProperty("Authorization", System.getenv("BALL_DONT_LIE"));
             connection.setRequestMethod("GET");
 
             connection.connect();

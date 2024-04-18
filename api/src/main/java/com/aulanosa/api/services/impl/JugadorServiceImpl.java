@@ -33,7 +33,7 @@ public class JugadorServiceImpl implements JugadorService {
         try {
             URL url = new URL("https://api.balldontlie.io/v1/players?cursor=" + cursor + "&per_page=100");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("Authorization", "475f2ca9-26a3-4a5b-a3d8-2942adc3f3ad");
+            connection.setRequestProperty("Authorization", System.getenv("BALL_DONT_LIE"));
             connection.setRequestMethod("GET");
 
             connection.connect();
