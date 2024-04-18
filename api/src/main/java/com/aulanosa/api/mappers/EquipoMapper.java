@@ -13,7 +13,7 @@ public class EquipoMapper {
      * @return objeto de la clase equipo
      */
     public static Equipo convertirAModelo(EquipoDTO equipoDTO){
-        return new Equipo(equipoDTO.getIdEquipo(), equipoDTO.getNombreEquipo(), equipoDTO.getCiudadEquipo(), equipoDTO.getAbreviacionEquipo(), equipoDTO.getImagenEquipo(), equipoDTO.getConferenciaEquipo(), equipoDTO.getDivisionEquipo());
+        return new Equipo(equipoDTO.getIdEquipo(), equipoDTO.getNombreEquipo(), equipoDTO.getCiudadEquipo(), equipoDTO.getAbreviacionEquipo(), equipoDTO.getImagenEquipo(), equipoDTO.getConferenciaEquipo(), equipoDTO.getDivisionEquipo(), equipoDTO.getPuestoConferencia(), equipoDTO.getPuestoDivision(), equipoDTO.getnVictorias(), equipoDTO.getnDerrotas(), equipoDTO.getPorcentajeVictorias());
     }
 
     /**
@@ -22,7 +22,7 @@ public class EquipoMapper {
      * @return objeto de la clase EquipoDTO
      */
     public static EquipoDTO convertirADTO(Equipo equipo){
-        return new EquipoDTO(equipo.getIdEquipo(), equipo.getNombreEquipo(), equipo.getCiudadEquipo(), equipo.getAbreviacionEquipo(), equipo.getImagenEquipo(), equipo.getConferenciaEquipo(), equipo.getDivisionEquipo());
+        return new EquipoDTO(equipo.getIdEquipo(), equipo.getNombreEquipo(), equipo.getCiudadEquipo(), equipo.getAbreviacionEquipo(), equipo.getImagenEquipo(), equipo.getConferenciaEquipo(), equipo.getDivisionEquipo(), equipo.getPuestoConferencia(), equipo.getPuestoDivision(), equipo.getnVictorias(), equipo.getnDerrotas(), equipo.getPorcentajeVictorias());
     }
 
     /**

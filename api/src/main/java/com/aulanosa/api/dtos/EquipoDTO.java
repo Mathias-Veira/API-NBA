@@ -8,12 +8,17 @@ public class EquipoDTO {
     private String imagenEquipo;
     private String conferenciaEquipo;
     private String divisionEquipo;
+    private int puestoConferencia;
+    private int puestoDivision;
+    private int nVictorias;
+    private int nDerrotas;
+    private double porcentajeVictorias;
 
     public EquipoDTO(){
 
     }
 
-    public EquipoDTO(int idEquipo, String nombreEquipo, String ciudadEquipo, String abreviacionEquipo, String imagenEquipo, String conferenciaEquipo, String divisionEquipo) {
+    public EquipoDTO(int idEquipo, String nombreEquipo, String ciudadEquipo, String abreviacionEquipo, String imagenEquipo, String conferenciaEquipo, String divisionEquipo, int puestoConferencia, int puestoDivision, int nVictorias, int nDerrotas, double porcentajeVictorias) {
         this.idEquipo = idEquipo;
         this.nombreEquipo = nombreEquipo;
         this.ciudadEquipo = ciudadEquipo;
@@ -21,6 +26,11 @@ public class EquipoDTO {
         this.imagenEquipo = imagenEquipo;
         this.conferenciaEquipo = conferenciaEquipo;
         this.divisionEquipo = divisionEquipo;
+        this.puestoConferencia = puestoConferencia;
+        this.puestoDivision = puestoDivision;
+        this.nVictorias = nVictorias;
+        this.nDerrotas = nDerrotas;
+        this.porcentajeVictorias = porcentajeVictorias;
     }
 
     public int getIdEquipo() {
@@ -77,5 +87,45 @@ public class EquipoDTO {
 
     public void setDivisionEquipo(String divisionEquipo) {
         this.divisionEquipo = divisionEquipo;
+    }
+
+    public int getPuestoConferencia() {
+        return puestoConferencia;
+    }
+
+    public void setPuestoConferencia(int puestoConferencia) {
+        this.puestoConferencia = puestoConferencia;
+    }
+
+    public int getPuestoDivision() {
+        return puestoDivision;
+    }
+
+    public void setPuestoDivision(int puestoDivision) {
+        this.puestoDivision = puestoDivision;
+    }
+
+    public int getnVictorias() {
+        return nVictorias;
+    }
+
+    public void setnVictorias(int nVictorias) {
+        this.nVictorias = nVictorias;
+    }
+
+    public int getnDerrotas() {
+        return nDerrotas;
+    }
+
+    public void setnDerrotas(int nDerrotas) {
+        this.nDerrotas = nDerrotas;
+    }
+
+    public double getPorcentajeVictorias() {
+        return porcentajeVictorias;
+    }
+
+    public void setPorcentajeVictorias(double porcentajeVictorias) {
+        this.porcentajeVictorias = porcentajeVictorias;
     }
 }

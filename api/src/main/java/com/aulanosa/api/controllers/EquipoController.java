@@ -13,11 +13,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class EquipoController {
     @Autowired
     private EquipoService equipoService;
-    /*
-    @GetMapping("/api/equipos")
-    ResponseEntity<?> obtenerEquipos(){
-        return ResponseEntity.ok(equipoService.obtenerEquipos());
-    }
-
-     */
 }
