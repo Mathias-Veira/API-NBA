@@ -39,7 +39,6 @@ public class Jugador implements Serializable {
         this.numeroDraft = numeroDraft;
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_jugador")
     public int getIdJugador() {
         return idJugador;

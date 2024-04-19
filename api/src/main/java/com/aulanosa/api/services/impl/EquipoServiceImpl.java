@@ -51,7 +51,7 @@ public class EquipoServiceImpl implements EquipoService {
             URL url = new URL("https://sports-information.p.rapidapi.com/nba/standings?year=2023&group=conference\"");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("X-RapidAPI-Host", "sports-information.p.rapidapi.com");
-            connection.setRequestProperty("X-RapidAPI-Key", System.getenv("SPORTS_INFORMATION"));
+            connection.setRequestProperty("X-RapidAPI-Key", System.getenv("API_NBA"));
             connection.setRequestMethod("GET");
 
             connection.connect();
@@ -510,7 +510,6 @@ public class EquipoServiceImpl implements EquipoService {
         }
 
          */
-
 
     }
 

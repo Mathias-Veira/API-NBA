@@ -27,9 +27,12 @@ public class JugadorServiceImpl implements JugadorService {
 
     @Autowired
     private JugadorRepository jugadorRepository;
+
+
     private List<JugadorDTO> insertarJugadores(){
+
         List<JugadorDTO> jugadores = new ArrayList<>();
-        int cursor = 301;
+        int cursor = 1301;
         try {
             URL url = new URL("https://api.balldontlie.io/v1/players?cursor=" + cursor + "&per_page=100");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -56,6 +59,7 @@ public class JugadorServiceImpl implements JugadorService {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     JugadorDTO jugadorDTO = new JugadorDTO();
+                    jugadorDTO.setIdJugador(jsonObject.getInt("id"));
                     jugadorDTO.setIdEquipo(jsonObject.getJSONObject("team").getInt("id"));
                     jugadorDTO.setNombreJugador(jsonObject.getString("first_name"));
                     jugadorDTO.setApellidoJugador(jsonObject.getString("last_name"));
@@ -67,12 +71,12 @@ public class JugadorServiceImpl implements JugadorService {
 
                     // Peso del jugador
                     if (!jsonObject.isNull("weight")) {
-                        jugadorDTO.setPesoJugador(jsonObject.getInt("weight"));
+                        jugadorDTO.setPesoJugador(jsonObject.optInt("weight",0));
                     }
 
                     // Número de camiseta
                     if (!jsonObject.isNull("jersey_number")) {
-                        jugadorDTO.setNumeroCamiseta(jsonObject.getInt("jersey_number"));
+                        jugadorDTO.setNumeroCamiseta(jsonObject.optInt("jersey_number",-1));
                     }
 
                     // Universidad del jugador
@@ -114,9 +118,14 @@ public class JugadorServiceImpl implements JugadorService {
     @Override
     @PostConstruct
     public void almacenarJugadores() {
+        /*
         List<JugadorDTO> jugadores = insertarJugadores();
         for (JugadorDTO jugador: jugadores) {
             jugadorRepository.save(JugadorMapper.convertirAModelo(jugador));
         }
+
+         */
+
+
     }
 }
