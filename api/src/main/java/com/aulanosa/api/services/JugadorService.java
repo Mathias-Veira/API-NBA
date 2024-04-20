@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface JugadorService {
     void almacenarJugadores();
-    List<Integer> obtenerJugadoresTemporada();
+    List<JugadorDTO> obtenerJugadoresTemporada();
 }

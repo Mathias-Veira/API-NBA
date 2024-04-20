@@ -8,5 +8,8 @@ import java.util.List;
 public interface EquipoService  {
     void almacenarEquipos();
     void updateEquipos();
-    List<EquipoDTO> getTeams();
+    List<EquipoDTO> getLeagueRanking();
+    List<EquipoDTO> getConferenceRanking(String conference);
+
+    List<EquipoDTO> getDivisionRanking(String division);
 }

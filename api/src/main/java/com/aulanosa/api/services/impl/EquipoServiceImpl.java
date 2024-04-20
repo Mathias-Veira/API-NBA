@@ -5,7 +5,6 @@ import com.aulanosa.api.mappers.EquipoMapper;
 import com.aulanosa.api.models.Equipo;
 import com.aulanosa.api.repositories.EquipoRepository;
 import com.aulanosa.api.services.EquipoService;
-import jakarta.annotation.PostConstruct;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -31,12 +30,32 @@ public class EquipoServiceImpl implements EquipoService {
     private EquipoRepository equipoRepository;
 
     /**
-     * Este método recupera los equipos de la base de datos
+     * Este método devuelve el ranking de la liga general
      * @return lista de EquipoDTO
      */
     @Override
-    public List<EquipoDTO> getTeams(){
-        return EquipoMapper.convertirLista(equipoRepository.findAll());
+    public List<EquipoDTO> getLeagueRanking(){
+        return EquipoMapper.convertirLista(equipoRepository.getLeagueRanking());
+    }
+
+    /**
+     * Este método devuelve el ranking por la conferencia
+     * @param conference conferencia de la liga
+     * @return lista de equipos dto con el ranking por esa conferencia
+     */
+    @Override
+    public List<EquipoDTO> getConferenceRanking(String conference) {
+        return EquipoMapper.convertirLista(equipoRepository.getConferenceRanking(conference));
+    }
+
+    /**
+     * Este método devuelve el ranking de la división
+     * @param division división de la que se quiere saber el ranking
+     * @return lista de equipo dto con el ranking
+     */
+    @Override
+    public List<EquipoDTO> getDivisionRanking(String division) {
+        return EquipoMapper.convertirLista(equipoRepository.getDivisionRanking(division));
     }
 
     /**

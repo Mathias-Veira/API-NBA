@@ -2,6 +2,7 @@ package com.aulanosa.api.services.impl;
 
 
 import com.aulanosa.api.dtos.EstadisticaDTO;
+import com.aulanosa.api.dtos.JugadorDTO;
 import com.aulanosa.api.mappers.EstadisticaMapper;
 import com.aulanosa.api.repositories.EstadisticaRepository;
 import com.aulanosa.api.services.EstadisticaService;
@@ -34,8 +35,8 @@ public class EstadisticaServiceImpl implements EstadisticaService {
     private JugadorService jugadorService;
     private List<EstadisticaDTO> obtenerPromedios(){
         List<EstadisticaDTO> promedios = new ArrayList<>();
-        List<Integer> ids = jugadorService.obtenerJugadoresTemporada();
-        int[] playerIds = ids.stream().mapToInt(Integer::intValue).toArray();
+        List<JugadorDTO> jugadores = jugadorService.obtenerJugadoresTemporada();
+        int[] playerIds = jugadores.stream().mapToInt(JugadorDTO::getIdJugador).toArray();
 
         String playerIdParams = IntStream.of(playerIds)
                 .mapToObj(id -> "player_ids[]=" + id)

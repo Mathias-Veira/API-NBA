@@ -4,9 +4,7 @@ import com.aulanosa.api.dtos.EquipoDTO;
 import com.aulanosa.api.dtos.JugadorDTO;
 import com.aulanosa.api.mappers.JugadorMapper;
 import com.aulanosa.api.repositories.JugadorRepository;
-import com.aulanosa.api.services.EquipoService;
 import com.aulanosa.api.services.JugadorService;
-import jakarta.annotation.PostConstruct;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,8 +125,8 @@ public class JugadorServiceImpl implements JugadorService {
     }
 
     @Override
-    public List<Integer> obtenerJugadoresTemporada() {
-        List<Integer> ids = jugadorRepository.listarJugadores();
-        return ids;
+    public List<JugadorDTO> obtenerJugadoresTemporada() {
+        return JugadorMapper.convertirLista(jugadorRepository.listarJugadores());
     }
+
 }
