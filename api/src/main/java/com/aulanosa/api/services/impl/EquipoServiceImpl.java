@@ -501,15 +501,12 @@ public class EquipoServiceImpl implements EquipoService {
      * Este método permite almacenar la lista con los equipos de la NBA en la base de datos
      */
     @Override
-    @PostConstruct
+    @Scheduled(cron = "0 59 23 23 10 ?")
     public void almacenarEquipos() {
-        /*
         List<EquipoDTO> equipos = obtenerEquipos();
         for (EquipoDTO equipo: equipos) {
             equipoRepository.save(EquipoMapper.convertirAModelo(equipo));
         }
-
-         */
 
     }
 
@@ -518,8 +515,7 @@ public class EquipoServiceImpl implements EquipoService {
      * necesaria para las clasificaciones
      */
     @Override
-    //@Scheduled(cron = "@monthly")
-    @PostConstruct
+    @Scheduled(cron = "0 59 23 23 10 ?")
     public void updateEquipos() {
         List<EquipoDTO> equipos = updateTeams();
         for (EquipoDTO equipoDTO : equipos) {

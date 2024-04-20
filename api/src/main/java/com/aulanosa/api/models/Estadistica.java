@@ -217,7 +217,7 @@ public class Estadistica {
     public void setPorcentajeTirosLibres(double porcentajeTirosLibres) {
         this.porcentajeTirosLibres = porcentajeTirosLibres;
     }
-    @Column(name = "minutos_jugados ")
+    @Column(name = "minutos_jugados_por_partido")
     public String getMinutosJugados() {
         return minutosJugados;
     }

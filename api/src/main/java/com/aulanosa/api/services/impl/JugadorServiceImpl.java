@@ -116,16 +116,19 @@ public class JugadorServiceImpl implements JugadorService {
         return jugadores;
     }
     @Override
-    @PostConstruct
+    @Scheduled(cron = "0 59 23 23 10 ?")
     public void almacenarJugadores() {
-        /*
+
         List<JugadorDTO> jugadores = insertarJugadores();
         for (JugadorDTO jugador: jugadores) {
             jugadorRepository.save(JugadorMapper.convertirAModelo(jugador));
         }
 
-         */
+    }
 
-
+    @Override
+    public List<Integer> obtenerJugadoresTemporada() {
+        List<Integer> ids = jugadorRepository.listarJugadores();
+        return ids;
     }
 }
