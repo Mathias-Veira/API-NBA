@@ -66,7 +66,7 @@ public class EstadisticaServiceImpl implements EstadisticaService {
 
                 JSONArray jsonArray = new JSONObject(information.toString()).getJSONArray("data");
 
-                for (int i = 0; i < jsonArray.length() - 15; i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     EstadisticaDTO estadisticaDTO = new EstadisticaDTO();
                     estadisticaDTO.setIdJugador(jsonObject.getInt("player_id"));
@@ -104,11 +104,13 @@ public class EstadisticaServiceImpl implements EstadisticaService {
     }
 
     @Override
-    @Scheduled(cron = "0 59 23 23 10 ?")
+    //@Scheduled(cron = "0 59 23 23 10 ?")
+    //@PostConstruct
     public void insertarEstadisticas() {
         List<EstadisticaDTO> promedios = obtenerPromedios();
         for (EstadisticaDTO estadisticaDTO: promedios) {
             estadisticaRepository.save(EstadisticaMapper.convertirAModelo(estadisticaDTO));
         }
     }
+
 }
