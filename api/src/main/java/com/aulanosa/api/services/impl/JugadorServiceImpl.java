@@ -16,15 +16,12 @@ import org.springframework.stereotype.Service;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @Service
 @Lazy
 @Component
 public class JugadorServiceImpl implements JugadorService {
-
     @Autowired
     private JugadorRepository jugadorRepository;
 
@@ -34,6 +31,7 @@ public class JugadorServiceImpl implements JugadorService {
         List<JugadorDTO> jugadores = new ArrayList<>();
         int cont = 1;
         int cursor = 0;
+
         try {
             while (cont <= 30) {
                 playerFinished = false;
@@ -107,7 +105,6 @@ public class JugadorServiceImpl implements JugadorService {
                             playerFinished = true;
                         }
                     }
-
                 }
                 cont++;
             }
