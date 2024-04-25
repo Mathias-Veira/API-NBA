@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface JugadorRepository extends JpaRepository<Jugador,Integer> {
-    @Query("SELECT j FROM Jugador j where j.anioDraft>=2003 and j.anioDraft<=2023")
+    @Query("SELECT j FROM Jugador j WHERE (j.anioDraft BETWEEN 2003 AND 2023) OR (j.anioDraft = 0)")
     List<Jugador>listarJugadores();
 }
