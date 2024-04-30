@@ -8,6 +8,7 @@ import com.aulanosa.api.error.LoginException;
 import com.aulanosa.api.mappers.AccesoMapper;
 import com.aulanosa.api.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class UsuarioController {
      */
     @PostMapping("/api/login")
     ResponseEntity<?> iniciarSesion(@RequestBody AccesoDTO acceso) throws IncompleteDataException, LoginException, IdNotFoundException {
-            return ResponseEntity.ok(usuarioService.comprobarAcceso(acceso));
+        return new ResponseEntity<>(usuarioService.comprobarAcceso(acceso),HttpStatus.NO_CONTENT);
     }
     /**
      * Endpoint que permite registrar la información correspondiente a un usuario
@@ -35,7 +36,7 @@ public class UsuarioController {
      */
     @PostMapping("/api/usuarios")
     ResponseEntity<?> registrarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws IncompleteDataException {
-        return ResponseEntity.ok(usuarioService.crearUsuario(usuarioDTO));
+        return new ResponseEntity<>(usuarioService.crearUsuario(usuarioDTO), HttpStatus.CREATED);
     }
 
 }

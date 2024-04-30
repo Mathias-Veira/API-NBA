@@ -13,7 +13,7 @@ public class JugadorController {
     @Autowired
     private JugadorService jugadorService;
 
-    @GetMapping("api/players/")
+    @GetMapping("api/players")
     ResponseEntity<?> getPlayers(){
         return ResponseEntity.ok(jugadorService.obtenerJugadoresTemporada());
     }
