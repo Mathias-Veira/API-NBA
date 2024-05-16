@@ -132,4 +132,9 @@ public class EstadisticaServiceImpl implements EstadisticaService {
         }
     }
 
+    @Override
+    public List<EstadisticaDTO> getEstadisticas() {
+        return EstadisticaMapper.convertirLista(estadisticaRepository.findAll());
+    }
+
 }
