@@ -291,5 +291,10 @@ public class EquipoServiceImpl implements EquipoService {
 
     }
 
+    @Override
+    public List<EquipoDTO> getAllTeams() {
+        return EquipoMapper.convertirLista(equipoRepository.findAll());
+    }
+
 
 }

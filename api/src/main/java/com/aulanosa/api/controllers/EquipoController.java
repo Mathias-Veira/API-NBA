@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.*;
 public class EquipoController {
     @Autowired
     private EquipoService equipoService;
+
+    @GetMapping("api/teams")
+    ResponseEntity<?> getAllTeams(){
+        return ResponseEntity.ok(equipoService.getAllTeams());
+    }
     @GetMapping("api/ranking")
     ResponseEntity<?> getLeagueRanking(){
         return ResponseEntity.ok(equipoService.getLeagueRanking());
