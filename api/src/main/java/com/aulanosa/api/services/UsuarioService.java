@@ -21,4 +21,5 @@ public interface UsuarioService{
      * @return Se devuelve la información correspondiente al usuario posteriormente al registro
      */
     UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException;
+    UsuarioDTO obtenerUsuario(String name);
 }

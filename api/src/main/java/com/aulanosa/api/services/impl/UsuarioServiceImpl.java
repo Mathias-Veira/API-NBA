@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.awt.dnd.InvalidDnDOperationException;
-import java.util.Optional;
+
 @Service
 @Lazy
 public class UsuarioServiceImpl implements UsuarioService {
@@ -33,10 +33,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         UsuarioDTO usuarioDTO = null;
         try {
-            Optional<Usuario> user = usuarioRepository.findById(accesoDTO.getIdUsuario());
+            Usuario user = usuarioRepository.findByName(accesoDTO.getNombreUsuario());
 
-            if(user.isPresent()){
-                Usuario usuario = user.get();
+            if(!user.equals(null)){
+                Usuario usuario = user;
                 if(usuario.getPasswordUsuario().equals(accesoDTO.getPasswordUsuario())){
                     usuarioDTO = UsuarioMapper.convertirADTO(usuario);
                 }else{
@@ -66,5 +66,10 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new IncompleteDataException("El nombre de usuario y contraseña son obligatorios y no pueden estar vacíos");
         }
         return UsuarioMapper.convertirADTO(usuarioRepository.save(UsuarioMapper.convertirAModelo(usuarioDTO)));
+    }
+
+    @Override
+    public UsuarioDTO obtenerUsuario(String name) {
+        return UsuarioMapper.convertirADTO(usuarioRepository.findByName(name));
     }
 }

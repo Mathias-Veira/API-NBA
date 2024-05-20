@@ -10,10 +10,7 @@ import com.aulanosa.api.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -38,5 +35,10 @@ public class UsuarioController {
     ResponseEntity<?> registrarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws IncompleteDataException {
         return new ResponseEntity<>(usuarioService.crearUsuario(usuarioDTO), HttpStatus.CREATED);
     }
+    @GetMapping("/api/usuarios/{nombre}")
+    ResponseEntity<?> obtenerUsuario(@PathVariable String nombre) throws IncompleteDataException {
+        return new ResponseEntity<>(usuarioService.obtenerUsuario(nombre), HttpStatus.OK);
+    }
+
 
 }
