@@ -19,7 +19,7 @@ public class ApoyarServiceImpl implements ApoyarService {
 
     @Override
     public ApoyarDTO apoyarEquipo(ApoyarDTO apoyarDTO) {
-        ApoyarId apoyarId = new ApoyarId(apoyarDTO.getUsuarioDTO().getIdUsuario(),apoyarDTO.getEquipoDTO().getIdEquipo());
+        ApoyarId apoyarId = new ApoyarId(apoyarDTO.getIdUsuario(),apoyarDTO.getIdEquipo());
         Apoyar apoyar = ApoyarMapper.convertirAModelo(apoyarDTO);
         apoyar.setApoyarId(apoyarId);
         return ApoyarMapper.convertirADTO(apoyarRepository.save(apoyar));
