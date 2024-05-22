@@ -1,9 +1,6 @@
 package com.aulanosa.api.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -12,30 +9,20 @@ import java.io.Serializable;
 public class Apoyar implements Serializable {
     @EmbeddedId
     private ApoyarId apoyarId;
-    private int idUsuario;
-    private int idEquipo;
+
 
     public Apoyar() {
     }
 
-    public Apoyar(int idUsuario, int idEquipo) {
-        this.idUsuario = idUsuario;
-        this.idEquipo = idEquipo;
+    public Apoyar(ApoyarId apoyarId) {
+        this.apoyarId = apoyarId;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public ApoyarId getApoyarId() {
+        return apoyarId;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public int getIdEquipo() {
-        return idEquipo;
-    }
-
-    public void setIdEquipo(int idEquipo) {
-        this.idEquipo = idEquipo;
+    public void setApoyarId(ApoyarId apoyarId) {
+        this.apoyarId = apoyarId;
     }
 }

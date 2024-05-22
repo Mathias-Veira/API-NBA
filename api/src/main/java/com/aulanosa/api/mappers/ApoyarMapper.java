@@ -2,6 +2,7 @@ package com.aulanosa.api.mappers;
 
 import com.aulanosa.api.dtos.ApoyarDTO;
 import com.aulanosa.api.models.Apoyar;
+import com.aulanosa.api.models.ApoyarId;
 
 public class ApoyarMapper {
     /**
@@ -10,7 +11,7 @@ public class ApoyarMapper {
      * @return objeto de la clase apoyar
      */
     public static Apoyar convertirAModelo(ApoyarDTO apoyarDTO){
-        return new Apoyar(apoyarDTO.getIdUsuario(),apoyarDTO.getIdEquipo());
+        return new Apoyar(new ApoyarId(apoyarDTO.getIdUsuario(), apoyarDTO.getIdEquipo()));
     }
 
     /**
@@ -19,6 +20,6 @@ public class ApoyarMapper {
      * @return objeto de la clase ApoyarDTO
      */
     public static ApoyarDTO convertirADTO(Apoyar apoyar){
-        return new ApoyarDTO(apoyar.getIdUsuario(), apoyar.getIdEquipo());
+        return new ApoyarDTO(apoyar.getApoyarId().getIdUsuario(),apoyar.getApoyarId().getIdEquipo());
     }
 }

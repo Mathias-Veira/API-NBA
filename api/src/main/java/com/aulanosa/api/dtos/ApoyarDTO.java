@@ -5,6 +5,7 @@ public class ApoyarDTO {
     private int idEquipo;
 
     public ApoyarDTO() {
+
     }
 
     public ApoyarDTO(int idUsuario, int idEquipo) {
