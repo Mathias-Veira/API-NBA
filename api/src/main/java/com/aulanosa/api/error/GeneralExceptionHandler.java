@@ -48,4 +48,16 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDTO error = new ErrorDTO(HttpStatus.NOT_FOUND,exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
+
+    /**
+     * Este método recoge la excepción personalizada UserExistsException y devuelve un código de respuesta 404
+     * @param exception excepción que se genera
+     * @return código de respuesta 400
+     */
+    @ExceptionHandler(UserExistsException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorDTO> UserExistsException(UserExistsException exception){
+        ErrorDTO error = new ErrorDTO(HttpStatus.BAD_REQUEST,exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 }

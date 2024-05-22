@@ -6,6 +6,7 @@ import com.aulanosa.api.dtos.UsuarioDTO;
 import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.error.IncompleteDataException;
 import com.aulanosa.api.error.LoginException;
+import com.aulanosa.api.error.UserExistsException;
 
 public interface UsuarioService{
     /**
@@ -20,6 +21,6 @@ public interface UsuarioService{
      * @param usuarioDTO Información del usuario a registrar
      * @return Se devuelve la información correspondiente al usuario posteriormente al registro
      */
-    UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException;
+    UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException, UserExistsException;
     UsuarioDTO obtenerUsuario(String name);
 }

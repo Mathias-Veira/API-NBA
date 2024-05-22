@@ -5,6 +5,7 @@ import com.aulanosa.api.dtos.UsuarioDTO;
 import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.error.IncompleteDataException;
 import com.aulanosa.api.error.LoginException;
+import com.aulanosa.api.error.UserExistsException;
 import com.aulanosa.api.mappers.AccesoMapper;
 import com.aulanosa.api.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UsuarioController {
      * @return Se devuelve la información posterior al registro
      */
     @PostMapping("/api/usuarios")
-    ResponseEntity<?> registrarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws IncompleteDataException {
+    ResponseEntity<?> registrarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws IncompleteDataException, UserExistsException {
         return new ResponseEntity<>(usuarioService.crearUsuario(usuarioDTO), HttpStatus.CREATED);
     }
     @GetMapping("/api/usuarios/{nombre}")

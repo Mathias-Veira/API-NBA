@@ -5,6 +5,7 @@ import com.aulanosa.api.dtos.UsuarioDTO;
 import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.error.IncompleteDataException;
 import com.aulanosa.api.error.LoginException;
+import com.aulanosa.api.error.UserExistsException;
 import com.aulanosa.api.mappers.UsuarioMapper;
 import com.aulanosa.api.models.Usuario;
 import com.aulanosa.api.repositories.UsuarioRepository;
@@ -61,15 +62,24 @@ public class UsuarioServiceImpl implements UsuarioService {
      * @return Se devuelve la información correspondiente al usuario posteriormente al registro
      */
     @Override
-    public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException {
+    public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) throws IncompleteDataException, UserExistsException {
+        UsuarioDTO user;
         if(StringUtils.isBlank(usuarioDTO.getNombreUsuario())||StringUtils.isBlank(usuarioDTO.getPasswordUsuario())){
             throw new IncompleteDataException("El nombre de usuario y contraseña son obligatorios y no pueden estar vacíos");
         }
+        user = obtenerUsuario(usuarioDTO.getNombreUsuario());
+        if(user != null){
+            throw new UserExistsException("El usuario ya existe");
+        }
+
         return UsuarioMapper.convertirADTO(usuarioRepository.save(UsuarioMapper.convertirAModelo(usuarioDTO)));
     }
 
     @Override
     public UsuarioDTO obtenerUsuario(String name) {
+        if(usuarioRepository.findByName(name) == null){
+            return null;
+        }
         return UsuarioMapper.convertirADTO(usuarioRepository.findByName(name));
     }
 }
