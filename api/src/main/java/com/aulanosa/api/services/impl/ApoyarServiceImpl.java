@@ -1,6 +1,7 @@
 package com.aulanosa.api.services.impl;
 
 import com.aulanosa.api.dtos.ApoyarDTO;
+import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.mappers.ApoyarMapper;
 import com.aulanosa.api.models.Apoyar;
 import com.aulanosa.api.models.ApoyarId;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Lazy
 public class ApoyarServiceImpl implements ApoyarService {
@@ -18,10 +18,14 @@ public class ApoyarServiceImpl implements ApoyarService {
     private ApoyarRepository apoyarRepository;
 
     @Override
-    public ApoyarDTO apoyarEquipo(ApoyarDTO apoyarDTO) {
+    public ApoyarDTO apoyarEquipo(ApoyarDTO apoyarDTO) throws IdNotFoundException {
         ApoyarId apoyarId = new ApoyarId(apoyarDTO.getIdUsuario(),apoyarDTO.getIdEquipo());
         Apoyar apoyar = ApoyarMapper.convertirAModelo(apoyarDTO);
         apoyar.setApoyarId(apoyarId);
-        return ApoyarMapper.convertirADTO(apoyarRepository.save(apoyar));
+        try {
+            return ApoyarMapper.convertirADTO(apoyarRepository.save(apoyar));
+        }catch (RuntimeException e){
+            throw new IdNotFoundException("Uno de los id no existe");
+        }
     }
 }
