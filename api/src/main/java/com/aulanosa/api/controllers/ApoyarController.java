@@ -25,7 +25,7 @@ public class ApoyarController {
      * @return Se retorna código de respuesta 200 si no hubo ningún error
      */
     @PostMapping("/api/apoyar")
-    ResponseEntity<?> registrarUsuario(@RequestBody ApoyarDTO apoyarDTO) throws IdNotFoundException {
+    ResponseEntity<?> apoyarEquipo(@RequestBody ApoyarDTO apoyarDTO) throws IdNotFoundException {
         return new ResponseEntity<>(apoyarService.apoyarEquipo(apoyarDTO), HttpStatus.OK);
     }
 }
