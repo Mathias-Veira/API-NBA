@@ -1,8 +1,13 @@
 package com.aulanosa.api.mappers;
 
+import com.aulanosa.api.dtos.EquipoDTO;
 import com.aulanosa.api.dtos.SeguirDTO;
+import com.aulanosa.api.models.Equipo;
 import com.aulanosa.api.models.Seguir;
 import com.aulanosa.api.models.SeguirId;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SeguirMapper {
     /**
@@ -21,5 +26,19 @@ public class SeguirMapper {
      */
     public static SeguirDTO convertirADTO(Seguir seguir){
         return new SeguirDTO(seguir.getSeguirId().getIdUsuario(),seguir.getSeguirId().getIdJugador());
+    }
+
+    /**
+     * Este método permite convertir de lista de objetos Seguir a lista de objetos SeguirDTO
+     * @param seguidos lista de objetos Seguir
+     * @return lista de objetos SeguirDTO
+     */
+    public static List<SeguirDTO> convertirLista(List<Seguir> seguidos){
+        List<SeguirDTO> seguidosDTO = new ArrayList<>();
+
+        for (Seguir seguir: seguidos) {
+            seguidosDTO.add(convertirADTO(seguir));
+        }
+        return seguidosDTO;
     }
 }
