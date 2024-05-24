@@ -1,10 +1,12 @@
 package com.aulanosa.api.services.impl;
 
 import com.aulanosa.api.dtos.EquipoDTO;
+import com.aulanosa.api.dtos.JugadorDTO;
 import com.aulanosa.api.mappers.EquipoMapper;
 import com.aulanosa.api.models.Equipo;
 import com.aulanosa.api.repositories.EquipoRepository;
 import com.aulanosa.api.services.EquipoService;
+import com.aulanosa.api.services.JugadorService;
 import jakarta.annotation.PostConstruct;
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ import org.json.JSONObject;
 public class EquipoServiceImpl implements EquipoService {
     @Autowired
     private EquipoRepository equipoRepository;
+    @Autowired
+    private JugadorService jugadorService;
 
     /**
      * Este método devuelve el ranking de la liga general
@@ -60,6 +64,12 @@ public class EquipoServiceImpl implements EquipoService {
     @Override
     public List<EquipoDTO> getDivisionRanking(String division) {
         return EquipoMapper.convertirLista(equipoRepository.getDivisionRanking(division));
+    }
+
+    @Override
+    public EquipoDTO getTeamById(int idJugador) {
+        JugadorDTO jugadorDTO = jugadorService.getJugadorById(idJugador);
+        return EquipoMapper.convertirADTO(equipoRepository.getTeamById(jugadorDTO.getIdEquipo()));
     }
 
     /**

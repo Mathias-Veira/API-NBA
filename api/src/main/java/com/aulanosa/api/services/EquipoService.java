@@ -13,4 +13,5 @@ public interface EquipoService  {
     List<EquipoDTO> getConferenceRanking(String conference);
 
     List<EquipoDTO> getDivisionRanking(String division);
+    EquipoDTO getTeamById(int idJugador);
 }

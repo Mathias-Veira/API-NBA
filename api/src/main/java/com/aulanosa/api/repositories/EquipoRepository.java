@@ -1,5 +1,6 @@
 package com.aulanosa.api.repositories;
 
+import com.aulanosa.api.dtos.EquipoDTO;
 import com.aulanosa.api.models.Equipo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface EquipoRepository extends JpaRepository<Equipo,Integer> {
 
     @Query("SELECT e FROM Equipo e WHERE e.divisionEquipo like :division ORDER BY e.puestoDivision")
     List<Equipo> getDivisionRanking(@Param("division") String division);
+    @Query("SELECT e FROM Equipo e WHERE e.idEquipo = :idEquipo")
+    Equipo getTeamById(@Param("idEquipo") int idEquipo);
 }

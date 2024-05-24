@@ -2,6 +2,7 @@ package com.aulanosa.api.controllers;
 
 import com.aulanosa.api.services.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,5 +29,10 @@ public class EquipoController {
     @GetMapping("api/ranking/division/{division}")
     ResponseEntity<?> getDivisionRanking(@PathVariable String division){
         return ResponseEntity.ok(equipoService.getDivisionRanking(division));
+    }
+
+    @GetMapping("api/team/{idJugador}")
+    ResponseEntity<?> getTeamById(@PathVariable int idJugador){
+        return new ResponseEntity<>(equipoService.getTeamById(idJugador), HttpStatus.OK);
     }
 }

@@ -132,4 +132,9 @@ public class JugadorServiceImpl implements JugadorService {
         return JugadorMapper.convertirLista(jugadorRepository.listarJugadores());
     }
 
+    @Override
+    public JugadorDTO getJugadorById(int idJugador) {
+        return JugadorMapper.convertirADTO(jugadorRepository.getPlayerById(idJugador));
+    }
+
 }
