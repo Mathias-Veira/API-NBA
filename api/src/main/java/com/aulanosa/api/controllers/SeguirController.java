@@ -22,14 +22,4 @@ public class SeguirController {
     ResponseEntity<?> seguirJugador (@RequestBody SeguirDTO seguirDTO) throws IdNotFoundException {
         return new ResponseEntity<>(seguirService.seguirJugador(seguirDTO), HttpStatus.OK);
     }
-
-    /**
-     * Endpoint que permite registrar la información correspondiente a un usuario y el jugador al que sigue
-     * @param idUsuario id del usuario e id del jugador que sigue
-     * @return Se retorna código de respuesta 200 si no hubo ningún error
-     */
-    @GetMapping("/api/seguidos/{idUsuario}")
-    ResponseEntity<?> obtenerJugadoresSeguidos (@PathVariable int idUsuario) throws IdNotFoundException {
-        return new ResponseEntity<>(seguirService.obtenerJugadoresSeguidos(idUsuario), HttpStatus.OK);
-    }
 }
