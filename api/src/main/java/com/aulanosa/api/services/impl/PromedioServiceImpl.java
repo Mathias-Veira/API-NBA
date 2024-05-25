@@ -59,7 +59,7 @@ public class PromedioServiceImpl implements PromedioService {
         try {
             jugadores = seguirService.obtenerJugadoresSeguidos(idUsuario);
             for (JugadorDTO jugadorDTO: jugadores) {
-                promedios = PromedioMapper.convertirLista(promedioRepository.getPromedioJugadoresSeguidos(jugadorDTO.getIdJugador()));
+                promedios.addAll(PromedioMapper.convertirLista(promedioRepository.getPromedioJugadoresSeguidos(jugadorDTO.getIdJugador())));
             }
             return promedios;
         }catch (RuntimeException e){
