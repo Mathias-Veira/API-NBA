@@ -2,6 +2,7 @@ package com.aulanosa.api.services.impl;
 
 import com.aulanosa.api.dtos.EquipoDTO;
 import com.aulanosa.api.dtos.JugadorDTO;
+import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.mappers.EquipoMapper;
 import com.aulanosa.api.models.Equipo;
 import com.aulanosa.api.repositories.EquipoRepository;
@@ -70,6 +71,16 @@ public class EquipoServiceImpl implements EquipoService {
     public EquipoDTO getTeamById(int idJugador) {
         JugadorDTO jugadorDTO = jugadorService.getJugadorById(idJugador);
         return EquipoMapper.convertirADTO(equipoRepository.getTeamById(jugadorDTO.getIdEquipo()));
+    }
+
+    @Override
+    public List<EquipoDTO> getEquiposApoyados(int idUsuario) throws IdNotFoundException {
+        try {
+            return EquipoMapper.convertirLista(equipoRepository.getEquiposApoyados(idUsuario));
+        }catch (RuntimeException e){
+            throw new IdNotFoundException("No existe el id");
+        }
+
     }
 
     /**

@@ -20,4 +20,11 @@ public interface EquipoRepository extends JpaRepository<Equipo,Integer> {
     List<Equipo> getDivisionRanking(@Param("division") String division);
     @Query("SELECT e FROM Equipo e WHERE e.idEquipo = :idEquipo")
     Equipo getTeamById(@Param("idEquipo") int idEquipo);
+    @Query("SELECT e\n" +
+            "FROM Usuario u INNER JOIN Apoyar a\n" +
+            "ON u.idUsuario = a.apoyarId.idUsuario\n" +
+            "INNER JOIN Equipo e\n" +
+            "ON a.apoyarId.idEquipo = e.idEquipo\n" +
+            "where u.idUsuario = :idUsuario")
+    List<Equipo> getEquiposApoyados(@Param("idUsuario") int idUsuario);
 }

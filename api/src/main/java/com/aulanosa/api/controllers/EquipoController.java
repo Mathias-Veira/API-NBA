@@ -1,5 +1,6 @@
 package com.aulanosa.api.controllers;
 
+import com.aulanosa.api.error.IdNotFoundException;
 import com.aulanosa.api.services.EquipoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,5 +35,10 @@ public class EquipoController {
     @GetMapping("api/team/{idJugador}")
     ResponseEntity<?> getTeamById(@PathVariable int idJugador){
         return new ResponseEntity<>(equipoService.getTeamById(idJugador), HttpStatus.OK);
+    }
+
+    @GetMapping("api/equipos/apoyados/{idUsuario}")
+    ResponseEntity<?> getEquiposApoyados(@PathVariable int idUsuario) throws IdNotFoundException {
+        return new ResponseEntity<>(equipoService.getEquiposApoyados(idUsuario), HttpStatus.OK);
     }
 }
