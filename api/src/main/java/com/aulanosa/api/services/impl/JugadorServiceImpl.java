@@ -25,7 +25,10 @@ public class JugadorServiceImpl implements JugadorService {
     @Autowired
     private JugadorRepository jugadorRepository;
 
-
+    /**
+     * Este método permite insertar los jugadores en base de datos mediante una api externa
+     * @return devuelve la lista de objetos JugadorDTO
+     */
     private List<JugadorDTO> insertarJugadores() {
         boolean playerFinished = false;
         List<JugadorDTO> jugadores = new ArrayList<>();
@@ -117,6 +120,9 @@ public class JugadorServiceImpl implements JugadorService {
         return jugadores;
     }
 
+    /**
+     * Este método permite almacenar los jugadores en la base de datos
+     */
     @Override
     @Scheduled(cron = "0 59 23 23 10 ?")
     public void almacenarJugadores() {
@@ -127,11 +133,20 @@ public class JugadorServiceImpl implements JugadorService {
         }
     }
 
+    /**
+     * Este método permite obtener todos los jugadores de esta temporada
+     * @return devuelve una lista de objetos JugadorDTO
+     */
     @Override
     public List<JugadorDTO> obtenerJugadoresTemporada() {
         return JugadorMapper.convertirLista(jugadorRepository.listarJugadores());
     }
 
+    /**
+     * Este método permite obtener un jugador por su id
+     * @param idJugador identificador del jugador
+     * @return objeto JugadorDTO
+     */
     @Override
     public JugadorDTO getJugadorById(int idJugador) {
         return JugadorMapper.convertirADTO(jugadorRepository.getPlayerById(idJugador));

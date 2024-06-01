@@ -3,7 +3,9 @@ package com.aulanosa.api.models;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-
+/**
+ * Esta clase representa los datos del usuario
+ */
 @Entity
 @Table(name = "USUARIOS")
 public class Usuario implements Serializable {
@@ -11,10 +13,17 @@ public class Usuario implements Serializable {
     private String nombreUsuario;
     private String passwordUsuario;
 
+    /**
+     * Constructor vacío
+     */
     public Usuario(){
 
     }
-
+    /**
+     * Constructor completo
+     * @param idUsuario identificador del usuario
+     * @param nombreUsuario nombre del usuario
+     */
     public Usuario(int idUsuario, String nombreUsuario, String passwordUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;

@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+/**
+ * Esta clase representa el controlador con el endpoint necesario para almacenar
+ * los jugadores que sigue un usuario
+ */
 @RestController
 @CrossOrigin
 public class SeguirController {

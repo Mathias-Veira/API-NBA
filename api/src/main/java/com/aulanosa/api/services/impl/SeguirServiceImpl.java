@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @Lazy
@@ -23,6 +23,12 @@ public class SeguirServiceImpl implements SeguirService {
     @Autowired
     private SeguirRepository seguirRepository;
 
+    /**
+     * Este método permite almacenar en la base de datos un jugador y el usuario que sigue a ese jugador
+     * @param seguirDTO Objeto SeguirDTO con la información del usuario y el jugador que sigue
+     * @return Objeto SeguirDTO
+     * @throws IdNotFoundException Excepción personalizada que se lanza si uno de los ids no existe
+     */
     @Override
     public SeguirDTO seguirJugador (SeguirDTO seguirDTO) throws IdNotFoundException {
         SeguirId seguirId = new SeguirId(seguirDTO.getIdUsuario(), seguirDTO.getIdJugador());
@@ -36,6 +42,12 @@ public class SeguirServiceImpl implements SeguirService {
         }
     }
 
+    /**
+     * Este método permite obtener los jugadores seguidos por un usuario
+     * @param idUsuario identificador del usuario
+     * @return Lista de objetos JugadorDTO
+     * @throws IdNotFoundException Excepción personalizada que se lanza si el identificador del usuario no existe
+     */
     @Override
     public List<JugadorDTO> obtenerJugadoresSeguidos(int idUsuario) throws IdNotFoundException {
         try {

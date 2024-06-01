@@ -17,6 +17,12 @@ public class ApoyarServiceImpl implements ApoyarService {
     @Autowired
     private ApoyarRepository apoyarRepository;
 
+    /**
+     * Este método permite registrar el equipo que un usuario apoya
+     * @param apoyarDTO Objeto ApoyarDTO con la información del identificador del equipo e identificador de usuario
+     * @return objeto ApoyarDTO
+     * @throws IdNotFoundException Excepción personalizada que se lanza si el identificador del usuario o el identificador del equipo no existe
+     */
     @Override
     public ApoyarDTO apoyarEquipo(ApoyarDTO apoyarDTO) throws IdNotFoundException {
         ApoyarId apoyarId = new ApoyarId(apoyarDTO.getIdUsuario(),apoyarDTO.getIdEquipo());

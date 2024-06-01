@@ -1,5 +1,8 @@
 package com.aulanosa.api.dtos;
 
+/**
+ * Esta clase representa la información de un equipo
+ */
 public class EquipoDTO {
     private int idEquipo;
     private String nombreEquipo;
@@ -14,10 +17,28 @@ public class EquipoDTO {
     private int nDerrotas;
     private double porcentajeVictorias;
 
+    /**
+     * Constructor vacío
+     */
     public EquipoDTO(){
 
     }
 
+    /**
+     * Constructor completo
+     * @param idEquipo identificador del equipo
+     * @param nombreEquipo nombre del equipo
+     * @param ciudadEquipo ciudad del equipo
+     * @param abreviacionEquipo abreviación del equipo
+     * @param imagenEquipo logo del equipo
+     * @param conferenciaEquipo conferencia a la que pertenece el equipo
+     * @param divisionEquipo división a la que pertenece el equipo
+     * @param puestoConferencia puesto del equipo en la conferencia
+     * @param puestoDivision puesto del equipo en la división
+     * @param nVictorias número de victorias
+     * @param nDerrotas número de derrotas
+     * @param porcentajeVictorias porcentaje de victorias
+     */
     public EquipoDTO(int idEquipo, String nombreEquipo, String ciudadEquipo, String abreviacionEquipo, String imagenEquipo, String conferenciaEquipo, String divisionEquipo, int puestoConferencia, int puestoDivision, int nVictorias, int nDerrotas, double porcentajeVictorias) {
         this.idEquipo = idEquipo;
         this.nombreEquipo = nombreEquipo;

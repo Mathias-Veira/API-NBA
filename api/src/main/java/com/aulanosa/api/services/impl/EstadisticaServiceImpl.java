@@ -35,6 +35,10 @@ public class EstadisticaServiceImpl implements EstadisticaService {
     @Autowired
     private JugadorService jugadorService;
 
+    /**
+     * Este método permite obtener los promedios de todos los jugadores mediante una petición a una api externa
+     * @return Lista de objetos EstadisticaDTO
+     */
     private List<EstadisticaDTO> obtenerPromedios() {
         List<EstadisticaDTO> promedios = new ArrayList<>();
         List<JugadorDTO> jugadores = jugadorService.obtenerJugadoresTemporada();
@@ -123,6 +127,9 @@ public class EstadisticaServiceImpl implements EstadisticaService {
         return promedios;
     }
 
+    /**
+     * Este método permite almacenar las estadísticas de los jugadores en base de datos
+     */
     @Override
     @Scheduled(cron = "0 59 23 23 10 ?")
     public void insertarEstadisticas() {
@@ -132,6 +139,10 @@ public class EstadisticaServiceImpl implements EstadisticaService {
         }
     }
 
+    /**
+     * Este método permite obtener todas las estadísticas de la base de datos
+     * @return
+     */
     @Override
     public List<EstadisticaDTO> getEstadisticas() {
         return EstadisticaMapper.convertirLista(estadisticaRepository.findAll());

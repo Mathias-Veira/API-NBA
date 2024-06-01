@@ -13,6 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Esta clase representa el controlador para gestionar la información referente a un usuario
+ */
 @RestController
 @CrossOrigin
 public class UsuarioController {
@@ -20,7 +23,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     /**
      * Endpoint que permite validar si la entrada indicada es correcta para la realización de un inicio de sesión
-     * @param acceso Información para realizar el acceso de sesión
+     * @param acceso Información para realizar el inicio de sesión
      * @return Se devuelve la información correspondiente al usuario si el inicio es correcto
      */
     @PostMapping("/api/login")
@@ -36,8 +39,14 @@ public class UsuarioController {
     ResponseEntity<?> registrarUsuario(@RequestBody UsuarioDTO usuarioDTO) throws IncompleteDataException, UserExistsException {
         return new ResponseEntity<>(usuarioService.crearUsuario(usuarioDTO), HttpStatus.CREATED);
     }
+
+    /**
+     * Este endpoint permite obtener un usuario por su nombre
+     * @param nombre nombre de usuario
+     * @return Código de respuesta 200 junto con el usuario
+     */
     @GetMapping("/api/usuarios/{nombre}")
-    ResponseEntity<?> obtenerUsuario(@PathVariable String nombre) throws IncompleteDataException {
+    ResponseEntity<?> obtenerUsuario(@PathVariable String nombre) {
         return new ResponseEntity<>(usuarioService.obtenerUsuario(nombre), HttpStatus.OK);
     }
 

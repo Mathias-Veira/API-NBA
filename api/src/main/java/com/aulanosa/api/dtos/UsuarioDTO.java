@@ -1,14 +1,24 @@
 package com.aulanosa.api.dtos;
-
+/**
+ * Esta clase representa los datos del usuario
+ */
 public class UsuarioDTO {
     private int idUsuario;
     private String nombreUsuario;
     private String passwordUsuario;
 
+    /**
+     * Constructor vacío
+     */
     public UsuarioDTO(){
 
     }
 
+    /**
+     * Constructor completo
+     * @param idUsuario identificador del usuario
+     * @param nombreUsuario nombre del usuario
+     */
     public UsuarioDTO(int idUsuario, String nombreUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;

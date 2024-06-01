@@ -12,6 +12,11 @@ import java.util.List;
 
 @Repository
 public interface SeguirRepository extends JpaRepository<Seguir, SeguirId> {
+    /**
+     * Este método permite obtener una lista con los jugadores seguidos por un usuario
+     * @param idUsuario identificador
+     * @return lista de jugadores que sigue un usuario
+     */
     @Query("SELECT j FROM Seguir s JOIN Jugador j ON s.seguirId.idJugador = j.idJugador WHERE s.seguirId.idUsuario = :idUsuario")
     List<Jugador> listarJugadoresSeguidos(@Param("idUsuario") int idUsuario);
 }

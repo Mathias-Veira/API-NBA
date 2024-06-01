@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Esta clase representa el controlador con el endpoint necesario para almacenar
+ * los equipos que apoya un usuario
+ */
 @RestController
 @CrossOrigin
 public class ApoyarController {

@@ -1,5 +1,8 @@
 package com.aulanosa.api.dtos;
 
+/**
+ * Esta clase representa un jugador
+ */
 public class JugadorDTO {
     private int idJugador;
     private int idEquipo;
@@ -15,9 +18,28 @@ public class JugadorDTO {
     private int rondaDraft;
     private int numeroDraft;
 
+    /**
+     * Constructor vacío
+     */
     public JugadorDTO() {
     }
 
+    /**
+     * Constructor completo
+     * @param idJugador identificador del jugador
+     * @param idEquipo identificador del equipo
+     * @param nombreJugador nombre del jugador
+     * @param apellidoJugador apellido del jugador
+     * @param posicionJugador posición del jugador
+     * @param alturaJugador altura del jugador
+     * @param pesoJugador peso del jugador
+     * @param numeroCamiseta número de camiseta del jugador
+     * @param universidad universidad a la que fue el jugador
+     * @param procedenciaJugador país de origen del jugador
+     * @param anioDraft año del draft en el que fue seleccionado
+     * @param rondaDraft ronda del draft en el que fue seleccionado
+     * @param numeroDraft posición del draft en el que fue seleccionado
+     */
     public JugadorDTO(int idJugador, int idEquipo, String nombreJugador, String apellidoJugador, String posicionJugador, String alturaJugador, int pesoJugador, int numeroCamiseta, String universidad, String procedenciaJugador, int anioDraft, int rondaDraft, int numeroDraft) {
         this.idJugador = idJugador;
         this.idEquipo = idEquipo;

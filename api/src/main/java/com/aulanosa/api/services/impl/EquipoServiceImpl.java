@@ -67,12 +67,23 @@ public class EquipoServiceImpl implements EquipoService {
         return EquipoMapper.convertirLista(equipoRepository.getDivisionRanking(division));
     }
 
+    /**
+     * Este método devuelve un equipo por el identificador del jugador
+     * @param idJugador identificador del jugador
+     * @return objeto EquipoDTO
+     */
     @Override
     public EquipoDTO getTeamById(int idJugador) {
         JugadorDTO jugadorDTO = jugadorService.getJugadorById(idJugador);
         return EquipoMapper.convertirADTO(equipoRepository.getTeamById(jugadorDTO.getIdEquipo()));
     }
 
+    /**
+     * Este método permite listar los equipos que un usuario apoya
+     * @param idUsuario identificador del usuario
+     * @return Lista de objetos EquipoDTO
+     * @throws IdNotFoundException Excepción personalizada que se lanza si el identificador del usuario no existe
+     */
     @Override
     public List<EquipoDTO> getEquiposApoyados(int idUsuario) throws IdNotFoundException {
         try {
@@ -147,59 +158,6 @@ public class EquipoServiceImpl implements EquipoService {
                 }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return equipos;
-    }
-
-    /**
-     * Este método obtiene los equipos que están en base de datos y mediante una petición a otra api externa
-     * actualiza los datos de los puestos en sus diferentes clasificaciones
-     *
-     * @return lista de equiposDTO con los datos de los equipos actualizados
-     */
-    private List<EquipoDTO> actualizarEquipos() {
-        List<EquipoDTO> equipos = EquipoMapper.convertirLista(equipoRepository.findAll());
-        try {
-            URL url = new URL("https://api-nba-v1.p.rapidapi.com/standings?league=standard&season=2023");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestProperty("X-RapidAPI-Host", "api-nba-v1.p.rapidapi.com");
-            connection.setRequestProperty("X-RapidAPI-Key", System.getenv("API_NBA"));
-            connection.setRequestMethod("GET");
-
-            connection.connect();
-            int code = connection.getResponseCode();
-
-            if (code != 200) {
-                System.out.println("Se produjo un error: " + code);
-                System.out.println(connection.getResponseMessage());
-            } else {
-                StringBuilder information = new StringBuilder();
-                Scanner sc = new Scanner(connection.getInputStream());
-
-                while (sc.hasNext()) {
-                    information.append(sc.nextLine());
-                }
-
-                sc.close();
-
-                JSONArray jsonArray = new JSONObject(information.toString()).getJSONArray("response");
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    for (int j = 0; j < equipos.size(); j++) {
-                        if (jsonObject.getJSONObject("team").getString("code").equals(equipos.get(j).getAbreviacionEquipo())) {
-                            equipos.get(j).setPuestoConferencia(jsonObject.getJSONObject("conference").getInt("rank"));
-                            equipos.get(j).setPuestoDivision(jsonObject.getJSONObject("division").getInt("rank"));
-                            equipos.get(j).setnVictorias(jsonObject.getJSONObject("conference").getInt("win"));
-                            equipos.get(j).setnDerrotas(jsonObject.getJSONObject("conference").getInt("loss"));
-                            equipos.get(j).setPorcentajeVictorias(jsonObject.getJSONObject("win").getDouble("percentage"));
-                        }
-                    }
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -312,6 +270,10 @@ public class EquipoServiceImpl implements EquipoService {
 
     }
 
+    /**
+     * Este método permite obtener todos los equipos almacenados en bd
+     * @return devuelve una lista con todos los equipos de la liga
+     */
     @Override
     public List<EquipoDTO> getAllTeams() {
         return EquipoMapper.convertirLista(equipoRepository.findAll());

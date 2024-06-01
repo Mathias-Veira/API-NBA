@@ -1,7 +1,9 @@
 package com.aulanosa.api.models;
 
 import jakarta.persistence.*;
-
+/**
+ * Esta clase representa las estadísticas
+ */
 @Entity
 @Table(name = "ESTADISTICAS")
 public class Estadistica {
@@ -28,9 +30,36 @@ public class Estadistica {
     private String minutosJugados;
     private int partidosJugados;
 
+    /**
+     * Constructor vacío
+     */
     public Estadistica() {
     }
-
+    /**
+     * Constructor completo
+     * @param idEstadistica identificador de la estadística
+     * @param idJugador identificador del jugador
+     * @param puntosPorPartido puntos por partido
+     * @param asistenciasPorPartido asistencias por partido
+     * @param perdidasPorPartido pérdidas por partido
+     * @param faltasPorPartido faltas por partido
+     * @param tirosIntentados tiros intentados
+     * @param tirosConvertidos tiros convertidos
+     * @param tirosLibresIntentados tiros libres intentados
+     * @param tirosLibresConvertidos tiros libres convertidos
+     * @param triplesIntentados triples intentados
+     * @param triplesConvertidos triples convertidos
+     * @param rebotesPorPartido rebotes por partido
+     * @param rebotesOfensivosPorPartido rebotes ofernsivos por partido
+     * @param rebotesDefensivosPorPartido rebotes defensivos por partido
+     * @param robosPorPartido robos por partido
+     * @param taponesPorPartido tapones por partido
+     * @param porcentajeTirosDeCampo porcentaje de tiros de campo
+     * @param porcentajeTriples porcentaje de triples
+     * @param porcentajeTirosLibres porcentaje de tiros libres
+     * @param minutosJugados minutos jugados
+     * @param partidosJugados partidos jugados
+     */
     public Estadistica(int idEstadistica, int idJugador, double puntosPorPartido, double asistenciasPorPartido, double perdidasPorPartido, double faltasPorPartido, double tirosIntentados, double tirosConvertidos, double tirosLibresIntentados, double tirosLibresConvertidos, double triplesIntentados, double triplesConvertidos, double rebotesPorPartido, double rebotesOfensivosPorPartido, double rebotesDefensivosPorPartido, double robosPorPartido, double taponesPorPartido, double porcentajeTirosDeCampo, double porcentajeTriples, double porcentajeTirosLibres, String minutosJugados, int partidosJugados) {
         this.idEstadistica = idEstadistica;
         this.idJugador = idJugador;

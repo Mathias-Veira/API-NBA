@@ -75,6 +75,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         return UsuarioMapper.convertirADTO(usuarioRepository.save(UsuarioMapper.convertirAModelo(usuarioDTO)));
     }
 
+    /**
+     * Este método permite obtener un usuario por su nombre
+     * @param name nombre del usuario a obtener
+     * @return objeto UsuarioDTO
+     */
     @Override
     public UsuarioDTO obtenerUsuario(String name) {
         if(usuarioRepository.findByName(name) == null){
